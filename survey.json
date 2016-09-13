@@ -1,8 +1,8 @@
 {
   "questions": [
     {
-      "body": "What's your student id number (SID)?",
-      "type": "text"
+      "body": "What's your student id number (SID)? Please enter a number without special characters.",
+      "type": "numeric"
     }
   ],
   "title": "Attendy"

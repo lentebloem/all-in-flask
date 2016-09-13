@@ -47,6 +47,7 @@ class Answer(db.Model):
     content = db.Column(db.String, nullable=False)
     session_id = db.Column(db.String, nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
+    # phone_number = db.Column(db.Integer, nullable=False)
 
     @classmethod
     def update_content(cls, session_id, question_id, content):

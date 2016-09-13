@@ -36,18 +36,18 @@ def voice_twiml(question):
 VOICE_INSTRUCTIONS = {
         Question.TEXT: 'Please record your answer after the beep and then hit the pound sign',
         Question.BOOLEAN: 'Please press the one key for yes and the zero key for no and then hit the pound sign',
-        Question.NUMERIC: 'Please press a number between 1 and 10 and then hit the pound sign'
+        Question.NUMERIC: 'Please press a number and then hit the pound sign'
 }
 
 
 def sms_twiml(question):
     response = twiml.Response()
     response.message(question.content)
-    response.message(SMS_INSTRUCTIONS[question.kind])
+    # response.message(SMS_INSTRUCTIONS[question.kind])
     return str(response)
 
-SMS_INSTRUCTIONS = {
-        Question.TEXT: 'Please type your answer',
-        Question.BOOLEAN: 'Please type 1 for yes and 0 for no',
-        Question.NUMERIC: 'Please type a number between 1 and 10'
-}
+# SMS_INSTRUCTIONS = {
+#         Question.TEXT: 'Please type your answer',
+#         Question.BOOLEAN: 'Please type 1 for yes and 0 for no',
+#         Question.NUMERIC: 'Please type a number.'
+# }

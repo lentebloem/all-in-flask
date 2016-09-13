@@ -61,3 +61,8 @@ def answer_transcription(question_id):
 
 def session_id():
     return request.values.get('CallSid') or request.values['MessageSid']
+
+def get_phone_number():
+    client = TwilioRestClient(account_sid, auth_token)
+    number = client.phone_numbers.get("PN2a0747eba6abf96b7e3c3ff0b4530f6e")
+    return number.phone_number
