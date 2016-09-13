@@ -5,17 +5,17 @@
       "type": "text"
     },
     {
-      "body": "Are you more than 21 years old?",
+      "body": "Are you seating at the end of a row",
       "type": "boolean"
     },
     {
-      "body": "In a scale of 1-10, how would you rate Python?",
+      "body": "In a scale of 1-10, how would you rate this lecture?",
       "type": "numeric"
     },
     {
-      "body": "Name a Python based framework you know about.",
+      "body": "What's your student id number (SID)?",
       "type": "text"
     }
   ],
-  "title": "Flask"
+  "title": "Attendy"
 }
