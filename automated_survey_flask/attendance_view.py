@@ -29,7 +29,7 @@ class StudentInfo:
         return int(code, 0) / self.hash
 
 
-@app.route('/answer/<question_id>', methods=['POST'])
+@app.route('/attendance/<question_id>', methods=['POST'])
 def answer(question_id):
     question = Question.query.get(question_id)
 
@@ -38,11 +38,11 @@ def answer(question_id):
                    session_id=session_id(),
                    phone_number=get_phone_number()))
 
-    send_enrypted_code_twiml(question_id)
     next_question = question.next()
-    redirect_twiml(next_question)
+    if next_question:
+        return redirect_twiml(next_question)
     else:
-        return
+        return goodbye_twiml(question_id)
 
 
 def extract_content(question):
@@ -61,17 +61,16 @@ def redirect_twiml(question):
     return str(response)
 
 
-def send_enrypted_code_twiml(question_id):
+def goodbye_twiml(question_id):
     response = twiml.Response()
     sid = extract_content(Question.query.get(question_id))
     if is_sms_request():
         response.message("Thank you for attending the lecture! Your code is " + StudentInfo(sid, get_phone_number()).encryptedCode())
-        redirect_twiml(next_question)
     else:
-        response.say("Thank you for attending the lecture! Your code is " + StudentInfo(sid, get_phone_number()).encryptedCode())
-        # response.hangup()
-    # if 'question_id' in session:
-        # del session['question_id']
+        response.say("Thank you for answering our survey. Good bye!")
+        response.hangup()
+    if 'question_id' in session:
+        del session['question_id']
     return str(response)
 
 
