@@ -56,6 +56,36 @@
                         <ol class="list-group">
                             <li class="list-group-item">Session SID: {{answer.session_id}}</li>
                             <li class="list-group-item">
+                                Sender: {{answer.phone_number}}
+                            </li>
+                            <li class="list-group-item">
+                                Response: {{answer.content}}
+                            </li>
+                        </ol>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <ul class="list-unstyled">
+            <li>
+                {% for attendee in attendance %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Question: {{question.content}}
+                    </div>
+                    {% for answer in question.answers.all() %}
+                    <div class="panel-body">
+                        <ol class="list-group">
+                            <li class="list-group-item">Session SID: {{answer.session_id}}</li>
+                            <li class="list-group-item">
+                                Sender: {{answer.phone_number}}
+                            </li>
+                            <li class="list-group-item">
                                 Response: {{answer.content}}
                             </li>
                         </ol>

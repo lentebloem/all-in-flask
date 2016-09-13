@@ -34,6 +34,7 @@ def upgrade():
     sa.Column('content', sa.String(), nullable=False),
     sa.Column('session_id', sa.String(), nullable=False),
     sa.Column('question_id', sa.Integer(), nullable=True),
+    sa.Column('phone_number', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['question_id'], ['questions.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

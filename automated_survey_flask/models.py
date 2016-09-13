@@ -43,21 +43,24 @@ class Question(db.Model):
 class Answer(db.Model):
     __tablename__ = 'answers'
 
+    # todo: add timestamp to database  
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
     session_id = db.Column(db.String, nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
-    # phone_number = db.Column(db.Integer, nullable=False)
+    phone_number = db.Column(db.String, nullable=False)
 
     @classmethod
-    def update_content(cls, session_id, question_id, content):
+    def update_content(cls, session_id, question_id, content, phone_number):
         existing_answer = cls.query.filter(Answer.session_id == session_id and
                                            Answer.question_id == question_id).first()
         existing_answer.content = content
+        eixsting_answer.phone_number = phone_number
         db.session.add(existing_answer)
         db.session.commit()
 
-    def __init__(self, content, question, session_id):
+    def __init__(self, content, question, session_id, phone_number):
         self.content = content
         self.question = question
         self.session_id = session_id
+        self.phone_number = phone_number
