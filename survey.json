@@ -5,12 +5,8 @@
       "type": "text"
     },
     {
-      "body": "Are you seating at the end of a row",
+      "body": "Are you seating at the end of a row? ",
       "type": "boolean"
-    },
-    {
-      "body": "In a scale of 1-10, how would you rate this lecture?",
-      "type": "numeric"
     },
     {
       "body": "What's your student id number (SID)?",

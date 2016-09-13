@@ -1,0 +1,17 @@
+{
+  "questions": [
+    {
+      "body": "What's the code that the person on your left got? Enter row number if you seat at the left end of the row.",
+      "type": "text"
+    },
+    {
+      "body": "What's the code that the person on your right got? Enter row number if you seat at the right end of the row.",
+      "type": "text"
+    },
+    {
+      "body": "In a scale of 1-10, how would you rate this lecture?",
+      "type": "numeric"
+    }
+  ],
+  "title": "Attendy"
+}
