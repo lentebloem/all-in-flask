@@ -34,12 +34,26 @@ student_list_group = {
     "+15104565229": StudentInfo("Surina Gulati", "25115313", "+15104565229")
 }
 
-rows = [str(num) for num in range(14)]
+student_list = [StudentInfo("Sophia Liu", "25233063", "+15106935609"),
+        StudentInfo("Bry Bach", "25024475", "+19165090941"),
+        StudentInfo("Madison Pauly", "24319964", "+17609201596"),
+        StudentInfo("Dayna Tran", "24250109",  "+17073865096"),
+        StudentInfo("Jo Jin Leong", "25418470", "+15102834827"),
+        StudentInfo("Surina Gulati", "25115313", "+15104565229")]
+        
 def get_attendance():
-    responses = Question.query.get(2).answers.all()
-    code = [res.content for res in responses if res.content not in rows]
-    rows = [res.content for res in responses if res.content in rows]
-    return [StudentInfo("Sophia Liu", "25233063", "+15106935609")]
+    rows = [str(num) for num in range(14)]
+    before_class = Question.query.get(2).answers.all()
+    after_class = Question.query.get(2).answers.all()
+    code = [res.content for res in after_class if res.content not in rows]
+    rows = [res.content for res in after_class if res.content in rows]
+
+    return [StudentInfo("Sophia Liu", "25233063", "+15106935609"),
+            StudentInfo("Bry Bach", "25024475", "+19165090941"),
+            StudentInfo("Madison Pauly", "24319964", "+17609201596"),
+            StudentInfo("Dayna Tran", "24250109",  "+17073865096"),
+            StudentInfo("Jo Jin Leong", "25418470", "+15102834827"),
+            StudentInfo("Surina Gulati", "25115313", "+15104565229")]
 
 @app.route('/')
 def root():
