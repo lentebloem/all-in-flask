@@ -8,6 +8,8 @@ account_sid = "AC2a7fd23053a652eed46e874124bda301"
 auth_token = "37950282565a26a01034b0c2b47c7652"
 client = TwilioRestClient(account_sid, auth_token)
 test_phone = "+15005550006"
+response = twiml.Response()
+
 
 class StudentInfo:
 
@@ -26,7 +28,7 @@ class StudentInfo:
         return hex_code[2:].upper()
 
     def decryptCode(self, code):
-        return int(code, 0) / self.hash
+        return int(code, 16) / self.hash
 
 
 @app.route('/answer/<question_id>', methods=['POST'])
@@ -38,11 +40,24 @@ def answer(question_id):
                    session_id=session_id(),
                    phone_number=get_phone_number()))
 
-    send_enrypted_code_twiml(question_id)
+    if extract_content(question)[0] == '2':
+        print("Asking the first quesiton about SID!!!")
+
+        code = StudentInfo(extract_content(question), get_phone_number()).encryptedCode()
+        if is_sms_request():
+            print("Expected: Your code is " + code)
+            print(response.message("Your code is " + code))
+        else:
+            print(response.say("Your code is " + code))
+
     next_question = question.next()
-    redirect_twiml(next_question)
+
+    if next_question:
+        print("Asking a next question -- should be the last question in theory.")
+        return redirect_twiml(next_question)
     else:
-        return
+        print("finish asking the last question. should send a thank you message.")
+        return goodbye_twiml(question_id)
 
 
 def extract_content(question):
@@ -55,23 +70,35 @@ def extract_content(question):
 
 
 def redirect_twiml(question):
-    response = twiml.Response()
-    response.redirect(url_for('question', question_id=question.id),
-                      method='GET')
+    # response = twiml.Response()
+    response.redirect(url_for('question', question_id=question.id), method='GET')
     return str(response)
 
+# # logic: after first question, message encrypted sid to each student
+# def send_enrypted_code_twiml(sid):
+#     response = twiml.Response()
+#     code = StudentInfo(sid, get_phone_number()).encryptedCode()
+#     if is_sms_request():
+#         print("Expected: Your code is " + code)
+#         response.message("Your code is " + code)
+#         # next_question = question.next()
+#         # redirect_twiml(next_question)
+#     else:
+#         response.say("Your code is " + code)
+#         # response.hangup()
+#     # if 'question_id' in session:
+#         # del session['question_id']
+#     return str(response)
 
-def send_enrypted_code_twiml(question_id):
-    response = twiml.Response()
+def goodbye_twiml(question_id):
     sid = extract_content(Question.query.get(question_id))
     if is_sms_request():
-        response.message("Thank you for attending the lecture! Your code is " + StudentInfo(sid, get_phone_number()).encryptedCode())
-        redirect_twiml(next_question)
+        response.message("Thank you for attending the lecture! Your attendance is recorded.")
     else:
-        response.say("Thank you for attending the lecture! Your code is " + StudentInfo(sid, get_phone_number()).encryptedCode())
-        # response.hangup()
-    # if 'question_id' in session:
-        # del session['question_id']
+        response.say("Thank you for attending the lecture. Your attendance is recorded.")
+        response.hangup()
+    if 'question_id' in session:
+        del session['question_id']
     return str(response)
 
 
@@ -95,7 +122,7 @@ def get_phone_number():
     return request.values.get('From', None) or request.values['PhoneNumber']
 
 def error_message(msg):
-    response = twiml.Response()
+    # response = twiml.Response()
     if is_sms_request():
         response.message(msg)
     else:

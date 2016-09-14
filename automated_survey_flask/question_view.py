@@ -46,8 +46,8 @@ def sms_twiml(question):
     # response.message(SMS_INSTRUCTIONS[question.kind])
     return str(response)
 
-# SMS_INSTRUCTIONS = {
-#         Question.TEXT: 'Please type your answer',
-#         Question.BOOLEAN: 'Please type 1 for yes and 0 for no',
-#         Question.NUMERIC: 'Please type a number.'
-# }
+SMS_INSTRUCTIONS = {
+        Question.TEXT: 'Please type your answer',
+        Question.BOOLEAN: 'Please type 1 for yes and 0 for no',
+        Question.NUMERIC: 'Please type a number.'
+}

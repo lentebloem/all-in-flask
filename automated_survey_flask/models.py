@@ -43,7 +43,7 @@ class Question(db.Model):
 class Answer(db.Model):
     __tablename__ = 'answers'
 
-    # todo: add timestamp to database  
+    # todo: add timestamp to database
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
     session_id = db.Column(db.String, nullable=False)

@@ -5,9 +5,9 @@
       "type": "numeric"
     },
     {
-      "body": "Please enter the code that the person on your left got. If you are seating at the left end of the row, enter your row number. ",
-      "type": "numeric"
+      "body": "Please enter the code that the person on your left received. If you are seating at the left end of the row, enter your row number. ",
+      "type": "text"
     }
   ],
-  "title": "Attendy"
+  "title": "All-in"
 }

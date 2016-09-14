@@ -21,19 +21,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.1.2/parsley.min.js"></script>
 
-    <title>Survey Results</title>
+    <title>All-in | IEOR 171 Project</title>
 </head>
 
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Survey Results</a>
+            <a class="navbar-brand" href="/">All-in | IEOR 171 Project</a>
         </div>
         <div>
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/">
-                        Index
+                        Dashboard
                     </a>
                 </li>
             </ul>
@@ -41,7 +41,7 @@
     </div>
 </nav>
 <div class="container">
-    <h1>Results for survey: {{surveyTitle}}</h1>
+    <h1>Responses from students</h1>
 
     <div class="col-md-8">
         <ul class="list-unstyled">
@@ -72,25 +72,23 @@
 
     <div class="col-md-4">
         <ul class="list-unstyled">
+          <h3>Attendees</h3>
             <li>
                 {% for attendee in attendance %}
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Question: {{question.content}}
-                    </div>
-                    {% for answer in question.answers.all() %}
                     <div class="panel-body">
                         <ol class="list-group">
-                            <li class="list-group-item">Session SID: {{answer.session_id}}</li>
                             <li class="list-group-item">
-                                Sender: {{answer.phone_number}}
+                              Name: {{attendee.name}}
                             </li>
                             <li class="list-group-item">
-                                Response: {{answer.content}}
+                              Phone Number: {{attendee.phone}}
+                            </li>
+                            <li class="list-group-item">
+                              Student ID: {{attendee.sid}}
                             </li>
                         </ol>
                     </div>
-                    {% endfor %}
                 </div>
                 {% endfor %}
             </li>
