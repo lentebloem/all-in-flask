@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TwilioDevEd/automated-survey-flask.svg?branch=master)](https://travis-ci.org/TwilioDevEd/automated-survey-flask)
+
 # Quickstart
 
 This application is built for the Attendy Project for IEOR 171: Technology Firm Leadership and Organizational Behavior at *University of California, Berkeley*.
@@ -37,6 +39,8 @@ pip install -r requirements.txt
 ```
 
 
+1. Copy the `.env.example` file to `.env`, and edit it to match your database.
+
 1. Run `source .env` to apply the environment variables (or even better, use [autoenv](https://github.com/kennethreitz/autoenv))
 
 1. Run the migrations.
@@ -59,9 +63,9 @@ pip install -r requirements.txt
   [We recommend using ngrok to solve this problem](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html).
 
 
- ```bash
- $ ngrok http 5000
- ```
+   ```bash
+   $ ngrok http 5000
+   ```
 
  Once you have started ngrok, update your TwiML app's voice URL setting to use your ngrok hostname.
 It will look something like this:
@@ -70,7 +74,7 @@ It will look something like this:
 http://88b37ada.ngrok.io/support/call
 ```
 
-1. Start the development server.
+### Start the development server
 
 ```
 python manage.py runserver

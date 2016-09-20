@@ -1,4 +1,23 @@
+<<<<<<< HEAD
 language: java
 jdk: oraclejdk8
 services: 
   - mongodb
+=======
+language: python
+python:
+  - '2.7'
+  - '3.4'
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+env:
+  global:
+  - DEBUG=False
+  - SECRET=SuperSecret
+  - SQLALCHEMY_DATABASE_URI=sqlite://survey.sqlite
+script:
+  - coverage run --source=automated_survey_flask manage.py test
+after_script:
+  - coverage report
+>>>>>>> 79a0c2ae7b9326e70a53f5b0c680ab4de97ab476

@@ -1,0 +1,13 @@
+{
+  "questions": [
+    {
+      "body": "What's your student id number (SID)? Please enter a number without special characters.",
+      "type": "numeric"
+    },
+    {
+      "body": "Please enter the code that the person on your left received. If you are seating at the left end of the row, enter your row number. ",
+      "type": "text"
+    }
+  ],
+  "title": "All-in"
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <link rel="stylesheet"
+          href="css/index.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.1.2/parsley.min.js"></script>
+
+    <title>All-in | IEOR 171 Project</title>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">ALL-IN</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        Seating Chart
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        Data Report
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="col-md-8">
+      <h1>Responses from students</h1>
+        <ul class="list-unstyled">
+            <li>
+                {% for question in questions %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Question: {{question.content}}
+                    </div>
+                    {% for answer in question.answers.all() %}
+                    <div class="panel-body">
+                        <ol class="list-group">
+                            <li class="list-group-item">Session SID: {{answer.session_id}}</li>
+                            <li class="list-group-item">
+                                Sender: {{answer.phone_number}}
+                            </li>
+                            <li class="list-group-item">
+                                Response: {{answer.content}}
+                            </li>
+                            <li class="list-group-item">
+                                Time: 2016-09-12 15:01:04
+                            </li>
+                        </ol>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <ul class="list-unstyled">
+          <h3>Attendees</h3>
+            <li>
+                {% for attendee in attendance %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ol class="list-group">
+                            <li class="list-group-item">
+                              Name: {{attendee.name}}
+                            </li>
+                            <li class="list-group-item">
+                              Phone Number: {{attendee.phone}}
+                            </li>
+                            <li class="list-group-item">
+                              Student ID: {{attendee.sid}}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
+</html>
